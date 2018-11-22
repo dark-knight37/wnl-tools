@@ -1,0 +1,53 @@
+service SM1 implementedBy M1;
+service SM2 implementedBy M2;
+service Comm implementedBy Gate;
+
+component M1 {
+	description "Simple Sensing Component";
+	uses Comm;
+	failure .001;
+	replication 1;
+	redundancy 1;
+}
+
+component M2 { 
+	description "Structured Sensing Component";
+	uses Comm;
+	component cpu {
+		description "CPU";
+		nouses;
+		failure 1E-6;
+		replication 1;
+		redundancy 1;
+	}
+	component memory {
+		description "RAM";
+		nouses;
+		failure 1E-8;
+		replication 1;
+		redundancy 1;
+	}
+	component power {
+		description "Power Supply";
+		nouses;
+		failure 1E-3;
+		replication 2;
+		redundancy 1;
+	}
+	replication 1;
+	redundancy 1;
+}
+
+component Gate {
+	description "Simple communication gateway";
+	nouses;
+	failure .005;
+	replication 1;
+	redundancy 1;
+}
+
+attack dos {
+	description "Denial of Service";
+	success .05;
+	affecting Gate;
+}
