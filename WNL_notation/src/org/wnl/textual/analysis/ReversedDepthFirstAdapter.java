@@ -133,6 +133,10 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getSemi().apply(this);
         }
+        if(node.getDetectbody() != null)
+        {
+            node.getDetectbody().apply(this);
+        }
         if(node.getSbody() != null)
         {
             node.getSbody().apply(this);
@@ -150,6 +154,102 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getServKw().apply(this);
         }
         outASimpleService(node);
+    }
+
+    public void inASimpleDetectbody(ASimpleDetectbody node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASimpleDetectbody(ASimpleDetectbody node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASimpleDetectbody(ASimpleDetectbody node)
+    {
+        inASimpleDetectbody(node);
+        if(node.getContbody() != null)
+        {
+            node.getContbody().apply(this);
+        }
+        if(node.getDetecKw() != null)
+        {
+            node.getDetecKw().apply(this);
+        }
+        outASimpleDetectbody(node);
+    }
+
+    public void inANoneDetectbody(ANoneDetectbody node)
+    {
+        defaultIn(node);
+    }
+
+    public void outANoneDetectbody(ANoneDetectbody node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseANoneDetectbody(ANoneDetectbody node)
+    {
+        inANoneDetectbody(node);
+        if(node.getNodetecKw() != null)
+        {
+            node.getNodetecKw().apply(this);
+        }
+        outANoneDetectbody(node);
+    }
+
+    public void inASimpleContbody(ASimpleContbody node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASimpleContbody(ASimpleContbody node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASimpleContbody(ASimpleContbody node)
+    {
+        inASimpleContbody(node);
+        if(node.getContname() != null)
+        {
+            node.getContname().apply(this);
+        }
+        outASimpleContbody(node);
+    }
+
+    public void inAListContbody(AListContbody node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAListContbody(AListContbody node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAListContbody(AListContbody node)
+    {
+        inAListContbody(node);
+        if(node.getContbody() != null)
+        {
+            node.getContbody().apply(this);
+        }
+        if(node.getComma() != null)
+        {
+            node.getComma().apply(this);
+        }
+        if(node.getContname() != null)
+        {
+            node.getContname().apply(this);
+        }
+        outAListContbody(node);
     }
 
     public void inASimpleSbody(ASimpleSbody node)
@@ -1030,6 +1130,27 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getIdentifier().apply(this);
         }
         outAIdSname(node);
+    }
+
+    public void inAIdContname(AIdContname node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAIdContname(AIdContname node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAIdContname(AIdContname node)
+    {
+        inAIdContname(node);
+        if(node.getIdentifier() != null)
+        {
+            node.getIdentifier().apply(this);
+        }
+        outAIdContname(node);
     }
 
     public void inAIdCname(AIdCname node)

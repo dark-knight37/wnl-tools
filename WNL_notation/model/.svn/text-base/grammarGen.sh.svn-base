@@ -1,4 +1,0 @@
-#!/bin/bash
-rm -rf ../src/org/prgmdl/tespel/node/*.java ../src/org/prgmdl/tespel/lexer/*.java ../src/org/prgmdl/tespel/parser/*.java ../src/org/prgmdl/tespel/analysis/*.java
-java -jar /usr/share/java/sablecc.jar -d ../src/ tespel.sable
-

@@ -11,6 +11,7 @@ public final class ASimpleService extends PService
     private PSname _sname_;
     private TImplKw _implKw_;
     private PSbody _sbody_;
+    private PDetectbody _detectbody_;
     private TSemi _semi_;
 
     public ASimpleService()
@@ -23,6 +24,7 @@ public final class ASimpleService extends PService
         @SuppressWarnings("hiding") PSname _sname_,
         @SuppressWarnings("hiding") TImplKw _implKw_,
         @SuppressWarnings("hiding") PSbody _sbody_,
+        @SuppressWarnings("hiding") PDetectbody _detectbody_,
         @SuppressWarnings("hiding") TSemi _semi_)
     {
         // Constructor
@@ -33,6 +35,8 @@ public final class ASimpleService extends PService
         setImplKw(_implKw_);
 
         setSbody(_sbody_);
+
+        setDetectbody(_detectbody_);
 
         setSemi(_semi_);
 
@@ -46,6 +50,7 @@ public final class ASimpleService extends PService
             cloneNode(this._sname_),
             cloneNode(this._implKw_),
             cloneNode(this._sbody_),
+            cloneNode(this._detectbody_),
             cloneNode(this._semi_));
     }
 
@@ -155,6 +160,31 @@ public final class ASimpleService extends PService
         this._sbody_ = node;
     }
 
+    public PDetectbody getDetectbody()
+    {
+        return this._detectbody_;
+    }
+
+    public void setDetectbody(PDetectbody node)
+    {
+        if(this._detectbody_ != null)
+        {
+            this._detectbody_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._detectbody_ = node;
+    }
+
     public TSemi getSemi()
     {
         return this._semi_;
@@ -188,6 +218,7 @@ public final class ASimpleService extends PService
             + toString(this._sname_)
             + toString(this._implKw_)
             + toString(this._sbody_)
+            + toString(this._detectbody_)
             + toString(this._semi_);
     }
 
@@ -216,6 +247,12 @@ public final class ASimpleService extends PService
         if(this._sbody_ == child)
         {
             this._sbody_ = null;
+            return;
+        }
+
+        if(this._detectbody_ == child)
+        {
+            this._detectbody_ = null;
             return;
         }
 
@@ -253,6 +290,12 @@ public final class ASimpleService extends PService
         if(this._sbody_ == oldChild)
         {
             setSbody((PSbody) newChild);
+            return;
+        }
+
+        if(this._detectbody_ == oldChild)
+        {
+            setDetectbody((PDetectbody) newChild);
             return;
         }
 

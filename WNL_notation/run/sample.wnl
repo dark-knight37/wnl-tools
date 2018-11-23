@@ -1,6 +1,6 @@
-service SM1 implementedBy M1;
-service SM2 implementedBy M2;
-service Comm implementedBy Gate;
+service SM1 implementedBy M1 detects C1;
+service SM2 implementedBy M2 detects C2;
+service Comm implementedBy Gate nodetects;
 
 component M1 {
 	description "Simple Sensing Component";
