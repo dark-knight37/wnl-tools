@@ -15,7 +15,7 @@ public class TestParsing {
 			FileReader fr = new FileReader(args[0]);
 			BufferedReader br = new BufferedReader(fr);
 			PushbackReader pr = new PushbackReader(br, 2048);
-			Lexer lexer = new PrintLexer(pr);
+			Lexer lexer = new Lexer(pr);
 			Parser parser = new Parser(lexer);
 			Start root = parser.parse();
 			System.out.println("Have a nice day :)");

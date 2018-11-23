@@ -99,6 +99,30 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseASimpleDetectbody(ASimpleDetectbody node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANoneDetectbody(ANoneDetectbody node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASimpleContbody(ASimpleContbody node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAListContbody(AListContbody node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseASimpleSbody(ASimpleSbody node)
     {
         defaultCase(node);
@@ -291,7 +315,25 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAIdContname(AIdContname node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseAIdCname(AIdCname node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTNodetecKw(TNodetecKw node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTDetecKw(TDetecKw node)
     {
         defaultCase(node);
     }

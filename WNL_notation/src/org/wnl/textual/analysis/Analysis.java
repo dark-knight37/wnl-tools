@@ -16,6 +16,10 @@ public interface Analysis extends Switch
     void caseASimpleServices(ASimpleServices node);
     void caseAListServices(AListServices node);
     void caseASimpleService(ASimpleService node);
+    void caseASimpleDetectbody(ASimpleDetectbody node);
+    void caseANoneDetectbody(ANoneDetectbody node);
+    void caseASimpleContbody(ASimpleContbody node);
+    void caseAListContbody(AListContbody node);
     void caseASimpleSbody(ASimpleSbody node);
     void caseAListSbody(AListSbody node);
     void caseASimpleComponents(ASimpleComponents node);
@@ -48,8 +52,11 @@ public interface Analysis extends Switch
     void caseANumAbsnum(ANumAbsnum node);
     void caseAIdAname(AIdAname node);
     void caseAIdSname(AIdSname node);
+    void caseAIdContname(AIdContname node);
     void caseAIdCname(AIdCname node);
 
+    void caseTNodetecKw(TNodetecKw node);
+    void caseTDetecKw(TDetecKw node);
     void caseTImplKw(TImplKw node);
     void caseTAonKw(TAonKw node);
     void caseTNouseKw(TNouseKw node);

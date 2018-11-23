@@ -15,6 +15,8 @@ digit = ['0'..'9'];
 all = [0 .. 0xFFFF];
 
 Tokens
+nodetec_kw = 'nodetects';
+detec_kw = 'detects';
 impl_kw = 'implementedBy';
 aon_kw = 'affecting';
 nouse_kw = 'nouses';
@@ -57,7 +59,15 @@ services =
 	{list} services service;
 	  
 service =
-	{simple} serv_kw sname impl_kw sbody semi; 
+	{simple} serv_kw sname impl_kw sbody detectbody semi;
+
+detectbody = 
+	{simple} detec_kw contbody |
+	{none} nodetec_kw;
+
+contbody =
+	{simple} contname |
+	{list} contname comma contbody;
 
 sbody =
 	{simple} cname |
@@ -131,6 +141,9 @@ aname =
 	{id} identifier;
 
 sname = 
+	{id} identifier;
+
+contname = 
 	{id} identifier;
 
 cname = 
