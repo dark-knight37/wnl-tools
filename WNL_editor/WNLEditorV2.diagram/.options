@@ -1,7 +1,0 @@
-# Tracing options for the WNLEditorV2.diagram plug-in
-
-# Common issues
-WNLEditorV2.diagram/debug=false
-
-# Visual IDs
-WNLEditorV2.diagram/debug/visualID=false
