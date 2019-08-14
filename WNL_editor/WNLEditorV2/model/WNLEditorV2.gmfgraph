@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ASCII"?>
+<gmfgraph:Canvas xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="WNLML">
+  <figures name="Default">
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="PipeFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="ContaminantAttacksFigureTargetDecoration"/>
+    <descriptors name="ContaminantFigure">
+      <actualFigure xsi:type="gmfgraph:CustomFigure" name="ContaminantFigure" qualifiedClassName="figures.HazardFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <preferredSize dx="80" dy="80"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="ContaminantLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="ContaminantLabelFigure" text="Contaminant"/>
+    </descriptors>
+    <descriptors name="WaterPumpFigure">
+      <actualFigure xsi:type="gmfgraph:CustomFigure" name="WaterPumpFigure" qualifiedClassName="figures.WaterPumpFigure"/>
+    </descriptors>
+    <descriptors name="WaterPumpLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="WaterPumpLabelFigure" text="WaterPump"/>
+    </descriptors>
+    <descriptors name="ValveFigure">
+      <actualFigure xsi:type="gmfgraph:CustomFigure" name="ValveFigure" qualifiedClassName="figures.ValveFigure"/>
+    </descriptors>
+    <descriptors name="ValveLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="ValveLabelFigure" text="Valve"/>
+    </descriptors>
+    <descriptors name="ReservoirFigure">
+      <actualFigure xsi:type="gmfgraph:CustomFigure" name="ReservoirFigure" qualifiedClassName="figures.ReservoirFigure"/>
+    </descriptors>
+    <descriptors name="ReservoirLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="ReservoirLabelFigure" text="Reservoir"/>
+    </descriptors>
+    <descriptors name="TankFigure">
+      <actualFigure xsi:type="gmfgraph:CustomFigure" name="TankFigure" qualifiedClassName="figures.TankFigure"/>
+    </descriptors>
+    <descriptors name="TankLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="TankLabelFigure" text="Tank"/>
+    </descriptors>
+    <descriptors name="ConjuctionFigure">
+      <actualFigure xsi:type="gmfgraph:Ellipse" name="ConjuctionFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor"/>
+        <preferredSize dx="30" dy="30"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="ConjuctionLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="ConjuctionLabelFigure" text="Conjuction"/>
+    </descriptors>
+    <descriptors name="PipeFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="PipeFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.0">
+        <foregroundColor xsi:type="gmfgraph:RGBColor" red="128" green="128" blue="128"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="PipeLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="PipeLabelLabel" text="Pipe"/>
+    </descriptors>
+    <descriptors name="ContaminantAttacksFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ContaminantAttacksFigure" lineWidth="2" lineKind="LINE_DOT" targetDecoration="//@figures.0/@figures.1">
+        <foregroundColor xsi:type="gmfgraph:RGBColor" red="255"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="ContaminantAttacksExternalLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="ContaminantAttacksExternalLabel" text="ID"/>
+    </descriptors>
+  </figures>
+  <nodes name="Contaminant" figure="ContaminantFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="80" dy="80"/>
+    </facets>
+  </nodes>
+  <nodes name="WaterPump" figure="WaterPumpFigure"/>
+  <nodes name="Valve" figure="ValveFigure"/>
+  <nodes name="Reservoir" figure="ReservoirFigure"/>
+  <nodes name="Tank" figure="TankFigure"/>
+  <nodes name="Conjuction" figure="ConjuctionFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="30" dy="30"/>
+    </facets>
+  </nodes>
+  <connections name="Pipe" figure="PipeFigure"/>
+  <connections name="ContaminantAttacks" figure="ContaminantAttacksFigure"/>
+  <labels name="ContaminantLabel" figure="ContaminantLabelFigure" elementIcon="false"/>
+  <labels name="WaterPumpLabel" figure="WaterPumpLabelFigure" elementIcon="false"/>
+  <labels name="ValveLabel" figure="ValveLabelFigure" elementIcon="false"/>
+  <labels name="ReservoirLabel" figure="ReservoirLabelFigure" elementIcon="false"/>
+  <labels name="TankLabel" figure="TankLabelFigure" elementIcon="false"/>
+  <labels name="ConjuctionLabel" figure="ConjuctionLabelFigure" elementIcon="false"/>
+  <labels name="PipeLabel" figure="PipeLabelFigure" elementIcon="false"/>
+  <labels name="ContaminantAttacksExternalLabel" figure="ContaminantAttacksExternalLabelFigure" elementIcon="false"/>
+</gmfgraph:Canvas>

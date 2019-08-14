@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<!--
+
+-->
+<plugin>
+
+   <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
+      <?gmfgen generated="true"?>
+      <fileTypes type="text" extension="wnlml_diagram"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser" id="resource-factory">
+      <?gmfgen generated="true"?>
+      <parser
+         type="wnlml_diagram"
+         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
+      </parser>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors" id="gmf-editor">
+      <?gmfgen generated="true"?>
+      <editor
+         id="WNLML.diagram.part.WNLMLDiagramEditorID"
+         name="%editorName"
+         icon="icons/obj16/WNLMLDiagramFile.gif"
+         extensions="wnlml_diagram"
+         default="true"
+         class="WNLML.diagram.part.WNLMLDiagramEditor"
+         matchingStrategy="WNLML.diagram.part.WNLMLMatchingStrategy"
+         contributorClass="WNLML.diagram.part.WNLMLDiagramActionBarContributor">
+      </editor>
+   </extension>
+   
+   <extension point="org.eclipse.ui.contexts" id="ui-context">
+      <?gmfgen generated="true"?>
+      <context
+         description="%context.description"
+         id="WNLML.diagram.ui.diagramContext"
+         name="%context.name"
+         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
+      <?gmfgen generated="true"?>
+  	  <wizard
+  	     name="%newWizardName"
+  	     icon="icons/obj16/WNLMLDiagramFile.gif"
+  	     category="org.eclipse.ui.Examples"
+  	     class="WNLML.diagram.part.WNLMLCreationWizard"
+  	     id="WNLML.diagram.part.WNLMLCreationWizardID">
+  	  	 <description>%newWizardDesc</description>  
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
+      <?gmfgen generated="true"?>
+      <objectContribution
+            id="WNLEditorV2.diagram.InitDiagram"
+            nameFilter="*.wnlml"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               label="%initDiagramActionLabel"
+               class="WNLML.diagram.part.WNLMLInitDiagramFileAction"
+               menubarPath="additions"
+               enablesFor="1"
+               id="WNLEditorV2.diagram.InitDiagramAction">
+         </action>
+      </objectContribution>
+   </extension>
+	
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
+      <?gmfgen generated="true"?>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
+         id="WNLMLPresentation">
+         <Priority name="Lowest"/>
+         <ViewId id="WNLML.diagram.part.WNLMLDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="delete"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
+               <GlobalActionId actionId="save"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="save">
+               </GlobalActionId>
+            </ElementType>        
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.printing.render.providers.DiagramWithPrintGlobalActionHandlerProvider"
+         id="WNLMLPresentationPrint">
+         <Priority name="Lowest"/>
+         <ViewId id="WNLML.diagram.part.WNLMLDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="print"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
+         id="WNLMLPresentationIDE">
+         <Priority name="Lowest"/>
+         <ViewId id="WNLML.diagram.part.WNLMLDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="bookmark"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+            class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
+            id="WNLMLRender">
+         <Priority name="Lowest"/>
+         <ViewId id="WNLML.diagram.part.WNLMLDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="cut"/>
+               <GlobalActionId actionId="copy"/>
+               <GlobalActionId actionId="paste"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+   </extension>
+
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
+      <?gmfgen generated="true"?>
+      <MarkerNavigationProvider class="WNLML.diagram.providers.WNLMLMarkerNavigationProvider">
+         <MarkerType name="WNLEditorV2.diagram.diagnostic"/>
+         <Priority name="Lowest"/>
+      </MarkerNavigationProvider>
+   </extension>
+
+   <extension id="diagnostic" name="WNLML Plugin problems" point="org.eclipse.core.resources.markers">
+      <?gmfgen generated="true"?>
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+      <persistent value="true"/>
+   </extension>   
+
+   <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="WNLML.diagram.providers.WNLMLValidationDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+         <context decoratorTargets="PRIMARY_VIEW"/>
+      </decoratorProvider>
+   </extension>
+
+   <extension point="org.eclipse.core.runtime.preferences" id="prefs">
+      <?gmfgen generated="true"?>
+      <initializer class="WNLML.diagram.preferences.DiagramPreferenceInitializer"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.preferencePages" id="prefpages">
+      <?gmfgen generated="true"?>
+      <page
+            id="WNLEditorV2.diagram.general"
+            name="%prefpage.WNLEditorV2.diagram.general"
+            class="WNLML.diagram.preferences.DiagramGeneralPreferencePage">
+      </page>
+      <page
+            id="WNLEditorV2.diagram.appearance"
+            name="%prefpage.WNLEditorV2.diagram.appearance"
+            category="WNLEditorV2.diagram.general"
+            class="WNLML.diagram.preferences.DiagramAppearancePreferencePage">
+      </page>
+      <page
+            id="WNLEditorV2.diagram.connections"
+            name="%prefpage.WNLEditorV2.diagram.connections"
+            category="WNLEditorV2.diagram.general"
+            class="WNLML.diagram.preferences.DiagramConnectionsPreferencePage">
+      </page>
+      <page
+            id="WNLEditorV2.diagram.printing"
+            name="%prefpage.WNLEditorV2.diagram.printing"
+            category="WNLEditorV2.diagram.general"
+            class="WNLML.diagram.preferences.DiagramPrintingPreferencePage">
+      </page>
+      <page
+            id="WNLEditorV2.diagram.rulersAndGrid"
+            name="%prefpage.WNLEditorV2.diagram.rulersAndGrid"
+            category="WNLEditorV2.diagram.general"
+            class="WNLML.diagram.preferences.DiagramRulersAndGridPreferencePage">
+      </page>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
+      <?gmfgen generated="true"?>
+      <propertyContributor
+            contributorId="WNLEditorV2.diagram"
+            labelProvider="WNLML.diagram.sheet.WNLMLSheetLabelProvider">
+         <propertyCategory category="domain"/>
+         <propertyCategory category="visual"/>
+         <propertyCategory category="extra"/>
+      </propertyContributor>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs" id="proptabs">
+      <?gmfgen generated="true"?>   
+      <propertyTabs contributorId="WNLEditorV2.diagram">
+         <propertyTab
+             category="visual"
+             id="property.tab.AppearancePropertySection"
+             label="%tab.appearance"/>
+          <propertyTab
+             category="visual"
+             id="property.tab.DiagramPropertySection"
+             label="%tab.diagram"/>
+          <propertyTab
+             category="domain"
+             id="property.tab.domain"
+             label="%tab.domain"/>
+      </propertyTabs>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertySections" id="propsections">
+      <?gmfgen generated="true"?>   
+      <propertySections contributorId="WNLEditorV2.diagram">
+         <propertySection id="property.section.ConnectorAppearancePropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ConnectionEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ConnectionAppearancePropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>
+         <propertySection id="property.section.ShapeColorAndFontPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ShapeColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection> 
+         <propertySection id="property.section.DiagramColorsAndFontsPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.DiagramColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>     
+         <propertySection id="property.section.RulerGridPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.grid.RulerGridPropertySection" 
+            tab="property.tab.DiagramPropertySection">
+         </propertySection>     
+         <propertySection
+            id="property.section.domain" 
+            tab="property.tab.domain"
+            class="WNLML.diagram.sheet.WNLMLPropertySection">
+            <input type="org.eclipse.gmf.runtime.notation.View"/>
+            <input type="org.eclipse.gef.EditPart"/>
+            <input type="WNLML.diagram.navigator.WNLMLAbstractNavigatorItem"/>
+         </propertySection>
+      </propertySections>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
+      <?gmfgen generated="true"?>
+      <viewProvider class="WNLML.diagram.providers.WNLMLViewProvider">
+         <Priority name="Lowest"/>
+         <object id="referencing-diagrams" class="org.eclipse.gmf.runtime.notation.Diagram">
+            <method name="getType()" value="WNLML"/>
+         </object>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="WNLML"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003,2004,2005,2006"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002"/>
+      </viewProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
+      <?gmfgen generated="true"?>
+      <editpartProvider class="WNLML.diagram.providers.WNLMLEditPartProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
+            <method name="getType()" value="WNLML"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
+            <method name="getType()" value="2001,2002,2003,2004,2005,2006"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
+            <method name="getType()" value="4001,4002"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
+            <method name="getType()" value="5001,5002,5003,5004,5005,5006"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
+            <method name="getType()" value=""/>
+         </object>
+         <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
+      </editpartProvider>
+   </extension>
+
+   
+   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
+      <?gmfgen generated="true"?>
+      <modelingAssistantProvider class="WNLML.diagram.providers.assistants.WNLMLModelingAssistantProviderOfWaterNetworkEditPart">
+         <Priority name="Lowest"/>
+         <object class="WNLML.diagram.edit.parts.WaterNetworkEditPart" id="WaterNetwork_1000"/>
+         <context elements="WaterNetwork_1000"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="WNLML.diagram.providers.assistants.WNLMLModelingAssistantProviderOfWaterPumpEditPart">
+         <Priority name="Lowest"/>
+         <object class="WNLML.diagram.edit.parts.WaterPumpEditPart" id="WaterPump_2001"/>
+         <context elements="WaterPump_2001"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="WNLML.diagram.providers.assistants.WNLMLModelingAssistantProviderOfValveEditPart">
+         <Priority name="Lowest"/>
+         <object class="WNLML.diagram.edit.parts.ValveEditPart" id="Valve_2002"/>
+         <context elements="Valve_2002"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="WNLML.diagram.providers.assistants.WNLMLModelingAssistantProviderOfReservoirEditPart">
+         <Priority name="Lowest"/>
+         <object class="WNLML.diagram.edit.parts.ReservoirEditPart" id="Reservoir_2003"/>
+         <context elements="Reservoir_2003"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="WNLML.diagram.providers.assistants.WNLMLModelingAssistantProviderOfTankEditPart">
+         <Priority name="Lowest"/>
+         <object class="WNLML.diagram.edit.parts.TankEditPart" id="Tank_2004"/>
+         <context elements="Tank_2004"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="WNLML.diagram.providers.assistants.WNLMLModelingAssistantProviderOfConjuctionEditPart">
+         <Priority name="Lowest"/>
+         <object class="WNLML.diagram.edit.parts.ConjuctionEditPart" id="Conjuction_2005"/>
+         <context elements="Conjuction_2005"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="WNLML.diagram.providers.assistants.WNLMLModelingAssistantProviderOfContaminantEditPart">
+         <Priority name="Lowest"/>
+         <object class="WNLML.diagram.edit.parts.ContaminantEditPart" id="Contaminant_2006"/>
+         <context elements="Contaminant_2006"/>
+      </modelingAssistantProvider>
+      
+   </extension>
+
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
+      <?gmfgen generated="true"?>
+      <IconProvider class="WNLML.diagram.providers.WNLMLIconProvider">
+         <Priority name="Low"/>
+      </IconProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
+      <?gmfgen generated="true"?>
+      <ParserProvider class="WNLML.diagram.providers.WNLMLParserProvider">
+         <Priority name="Lowest"/>
+      </ParserProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders" id="decorator-provider">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="WNLML.diagram.providers.WNLMLShortcutsDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="generated-top-nodes">
+            <method name="getType()" value="2001,2002,2003,2004,2005,2006"/>
+         </object>
+         <context decoratorTargets="generated-top-nodes"/>
+      </decoratorProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
+      <?gmfgen generated="true"?>
+      <metamodel nsURI="WNL">
+         <metamodelType
+               id="WNLEditorV2.diagram.WaterNetwork_1000"
+               name="%metatype.name.WaterNetwork_1000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="WaterNetwork"
+               edithelper="WNLML.diagram.edit.helpers.WaterNetworkEditHelper">
+            <param name="semanticHint" value="1000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="WNL">
+         <metamodelType
+               id="WNLEditorV2.diagram.WaterPump_2001"
+               name="%metatype.name.WaterPump_2001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="WaterPump"
+               edithelper="WNLML.diagram.edit.helpers.WaterPumpEditHelper">
+            <param name="semanticHint" value="2001"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="WNL">
+         <metamodelType
+               id="WNLEditorV2.diagram.Valve_2002"
+               name="%metatype.name.Valve_2002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Valve"
+               edithelper="WNLML.diagram.edit.helpers.ValveEditHelper">
+            <param name="semanticHint" value="2002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="WNL">
+         <metamodelType
+               id="WNLEditorV2.diagram.Reservoir_2003"
+               name="%metatype.name.Reservoir_2003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Reservoir"
+               edithelper="WNLML.diagram.edit.helpers.ReservoirEditHelper">
+            <param name="semanticHint" value="2003"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="WNL">
+         <metamodelType
+               id="WNLEditorV2.diagram.Tank_2004"
+               name="%metatype.name.Tank_2004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Tank"
+               edithelper="WNLML.diagram.edit.helpers.TankEditHelper">
+            <param name="semanticHint" value="2004"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="WNL">
+         <metamodelType
+               id="WNLEditorV2.diagram.Conjuction_2005"
+               name="%metatype.name.Conjuction_2005"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Conjuction"
+               edithelper="WNLML.diagram.edit.helpers.ConjuctionEditHelper">
+            <param name="semanticHint" value="2005"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="WNL">
+         <metamodelType
+               id="WNLEditorV2.diagram.Contaminant_2006"
+               name="%metatype.name.Contaminant_2006"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Contaminant"
+               edithelper="WNLML.diagram.edit.helpers.ContaminantEditHelper">
+            <param name="semanticHint" value="2006"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="WNL">
+         <metamodelType
+               id="WNLEditorV2.diagram.Pipe_4001"
+               name="%metatype.name.Pipe_4001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Pipe"
+               edithelper="WNLML.diagram.edit.helpers.PipeEditHelper">
+            <param name="semanticHint" value="4001"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="WNL">
+         <specializationType
+               id="WNLEditorV2.diagram.ContaminantAttacks_4002"
+               name="%metatype.name.ContaminantAttacks_4002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4002"/>
+         </specializationType>
+      </metamodel>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="WNLEditorV2.diagram.TypeContext">
+         <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="WNLEditorV2.diagram.EditingDomain"/>
+         </enablement>
+      </clientContext> 
+      <binding context="WNLEditorV2.diagram.TypeContext">
+         <elementType ref="WNLEditorV2.diagram.WaterNetwork_1000"/>
+         <elementType ref="WNLEditorV2.diagram.WaterPump_2001"/>
+         <elementType ref="WNLEditorV2.diagram.Valve_2002"/>
+         <elementType ref="WNLEditorV2.diagram.Reservoir_2003"/>
+         <elementType ref="WNLEditorV2.diagram.Tank_2004"/>
+         <elementType ref="WNLEditorV2.diagram.Conjuction_2005"/>
+         <elementType ref="WNLEditorV2.diagram.Contaminant_2006"/>
+         <elementType ref="WNLEditorV2.diagram.Pipe_4001"/>
+         <elementType ref="WNLEditorV2.diagram.ContaminantAttacks_4002"/>
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+   </extension>
+	   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isURIEditorInput">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="WNLEditorV2.diagram.URIEditorInputPropertyTester"
+           type="org.eclipse.emf.common.ui.URIEditorInput"
+           namespace="WNLEditorV2.diagram"
+           properties="isURIEditorInput"
+           class="WNLML.diagram.part.WNLMLUriEditorInputTester">
+       </propertyTester>
+   </extension>
+
+	   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isShortcut">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="WNLEditorV2.diagram.ShortcutPropertyTester"
+           type="org.eclipse.gmf.runtime.notation.View"
+           namespace="WNLEditorV2.diagram"
+           properties="isShortcut"
+           class="WNLML.diagram.part.WNLMLShortcutPropertyTester">
+       </propertyTester>
+   </extension>
+
+	   <extension point="org.eclipse.ui.navigator.viewer" id="navigator-viewbinding">
+      <?gmfgen generated="true"?>
+      <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <contentExtension pattern="WNLEditorV2.diagram.resourceContent"/>
+			<contentExtension pattern="WNLEditorV2.diagram.domainResourceContent"/>
+            <contentExtension pattern="WNLEditorV2.diagram.navigatorLinkHelper"/>
+         </includes>
+      </viewerContentBinding>
+      <viewerActionBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <actionExtension pattern="WNLEditorV2.diagram.navigatorActionProvider"/>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+
+   <extension point="org.eclipse.ui.navigator.navigatorContent" id="navigator-content">
+      <?gmfgen generated="true"?>
+      <navigatorContent
+            id="WNLEditorV2.diagram.resourceContent" 
+            name="%navigatorContentName" 
+            priority="normal" 
+            contentProvider="WNLML.diagram.navigator.WNLMLNavigatorContentProvider" 
+            labelProvider="WNLML.diagram.navigator.WNLMLNavigatorLabelProvider"
+            icon="icons/obj16/WNLMLDiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="wnlml_diagram"/>
+               </and>
+               <instanceof value="WNLML.diagram.navigator.WNLMLAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="WNLEditorV2.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <or>
+         	   <instanceof value="WNLML.diagram.navigator.WNLMLAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="WNLEditorV2.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </possibleChildren>
+         <commonSorter 
+               id="WNLEditorV2.diagram.navigatorSorter" 
+               class="WNLML.diagram.navigator.WNLMLNavigatorSorter">
+            <parentExpression>
+               <or>
+	              <and>
+    	             <instanceof value="org.eclipse.core.resources.IFile"/>
+        	         <test property="org.eclipse.core.resources.extension" value="wnlml_diagram"/>
+                  </and>
+                  <instanceof value="WNLML.diagram.navigator.WNLMLAbstractNavigatorItem"/>
+               </or>
+            </parentExpression>
+         </commonSorter>
+      </navigatorContent>
+      <navigatorContent
+            id="WNLEditorV2.diagram.domainResourceContent" 
+            name="%domainNavigatorContentName" 
+            priority="normal" 
+            contentProvider="WNLML.diagram.navigator.WNLMLDomainNavigatorContentProvider" 
+            labelProvider="WNLML.diagram.navigator.WNLMLDomainNavigatorLabelProvider"
+            icon="icons/obj16/WNLMLDiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="wnlml"/>
+               </and>
+               <instanceof value="WNLML.diagram.navigator.WNLMLDomainNavigatorItem"/>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <instanceof value="WNLML.diagram.navigator.WNLMLDomainNavigatorItem"/>
+         </possibleChildren>
+      </navigatorContent>
+      <actionProvider
+            id="WNLEditorV2.diagram.navigatorActionProvider"
+            class="WNLML.diagram.navigator.WNLMLNavigatorActionProvider">
+         <enablement>
+            <or>
+               <instanceof value="WNLML.diagram.navigator.WNLMLAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="WNLEditorV2.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </enablement>
+      </actionProvider>
+   </extension>
+   
+	   <extension point="org.eclipse.ui.navigator.linkHelper" id="navigator-linkhelper">
+      <?gmfgen generated="true"?>
+      <linkHelper
+            id="WNLEditorV2.diagram.navigatorLinkHelper"
+            class="WNLML.diagram.navigator.WNLMLNavigatorLinkHelper">
+         <editorInputEnablement>
+            <and>
+               <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
+               <test property="WNLEditorV2.diagram.isURIEditorInput"/>
+            </and>
+         </editorInputEnablement>
+         <selectionEnablement>
+            <instanceof value="WNLML.diagram.navigator.WNLMLAbstractNavigatorItem"/>
+         </selectionEnablement>
+      </linkHelper>
+   </extension>
+   <extension point="org.eclipse.ui.commands" id="update-cmd">
+      <?gmfgen generated="true"?>
+      <command
+         categoryId="org.eclipse.ui.category.edit"
+         defaultHandler="WNLML.diagram.part.WNLMLDiagramUpdateCommand"
+         description="%update.diagram.description"
+         id="WNLML.diagram.updateDiagram"
+         name="%update.diagram.name"/>
+   </extension>
+   
+   <extension point="org.eclipse.ui.bindings" id="update-cmd-binding">
+      <?gmfgen generated="true"?>
+      <key 
+         commandId="WNLML.diagram.updateDiagram"
+         contextId="WNLML.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="F5"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.menus" id="context-menus">
+      <?gmfgen generated="true"?>
+      <!-- menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
+      </menuContribution>
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
+      </menuContribution -->
+      <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <command commandId="WNLEditorV2.diagram.LoadResourceAction">
+            <visibleWhen>
+               <and>
+                  <with variable="activePartId"><equals value="WNLML.diagram.part.WNLMLDiagramEditorID"/></with>
+                  <with variable="selection"><iterate ifEmpty="false"> 
+                     <instanceof value="WNLML.diagram.edit.parts.WaterNetworkEditPart"/>
+                  </iterate></with>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+   <extension point="org.eclipse.ui.commands" id="menu-commands">
+      <?gmfgen generated="true"?>
+      <category id="WNLML.diagram.part.WNLMLDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
+      <command id="WNLEditorV2.diagram.LoadResourceAction"
+         name="Load Resource"
+         categoryId="WNLML.diagram.part.WNLMLDiagramEditorID"
+         defaultHandler="WNLML.diagram.part.LoadResourceAction"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.handlers" id="menu-handlers">
+      <?gmfgen generated="true"?>
+   </extension>
+
+   <!-- optionally, specify keybindings -->
+</plugin>
