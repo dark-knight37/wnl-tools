@@ -1,0 +1,144 @@
+Package wnl.textual;
+
+Helpers
+nlw = 0x0D 0x0A;
+nll = 0x0A;
+tab1 = '\t';
+tab2 = 0x09;
+ignore_one = '\r';
+eol = 11 | 9 | 10 | 13 | 10 13;
+sp = ' ';
+txtdelim = '"';
+char = [['a'..'z']+['A'..'Z']];
+echar = [[['a'..'z']+['A'..'Z']]+'_' ];
+digit = ['0'..'9'];
+all = [0 .. 0xFFFF];
+
+Tokens
+nodetec_kw = 'nodetects';
+detec_kw = 'detects';
+impl_kw = 'implementedBy';
+aon_kw = 'affecting';
+nouse_kw = 'nouses';
+use_kw = 'uses';
+attack_kw = 'attack';
+serv_kw = 'service';
+comp_kw = 'component';
+descr_kw = 'description';
+failure_kw = 'failure';
+redundancy_kw = 'redundancy';
+replication_kw = 'replication';
+success_kw = 'success';
+o_curl = '{';
+c_curl = '}';
+eng = 'E';
+unoeng = '1E';
+dot = '.';
+semi = ';';
+comma = ',';
+minus = '-';
+spaces = eol+;
+space = sp+;
+identifier = char (digit | echar)* ;
+text = txtdelim (digit | echar | sp)*  txtdelim;
+number = digit*;
+blank = (sp | tab1 | tab2 | nlw | nll | ignore_one)+;
+ctrl_z = 0x1A;  
+
+Ignored Tokens
+	space,
+	spaces,
+	blank;
+
+Productions
+model = 
+	{simple} services components attacks ctrl_z?;
+
+services =
+	{simple} service |
+	{list} services service;
+	  
+service =
+	{simple} serv_kw sname impl_kw sbody detectbody semi;
+
+detectbody = 
+	{simple} detec_kw contbody |
+	{none} nodetec_kw;
+
+contbody =
+	{simple} contname |
+	{list} contname comma contbody;
+
+sbody =
+	{simple} cname |
+	{list} cname comma sbody;
+
+components =
+	{simple} component |
+	{list} components component;
+
+component =
+	{simple} comp_kw cname o_curl descr+ uses failure replication redundancy c_curl |
+	{complex} comp_kw cname o_curl descr+ uses components replication redundancy c_curl;
+
+uses =
+	{none} nouse_kw semi | 
+	{simple} use_kw ubody semi; 
+
+ubody =
+	{simple} cname |
+	{list} cname comma ubody;
+
+attacks =
+	{simple} attack |
+	{list} attacks attack;
+
+attack = 
+	{simple} attack_kw aname o_curl descr+ success aon_kw affbody semi c_curl;
+
+affbody =
+	{simple} cname |
+	{list} cname comma affbody;
+
+descr = 
+	{simple} descr_kw text semi;
+
+failure = 
+ 	{simple} failure_kw floatingpoint semi;
+
+replication = 
+	{simple} replication_kw absnum semi;
+
+redundancy = 
+	{simple} redundancy_kw absnum semi;
+
+success = 
+	{simple} success_kw fixedpoint semi;
+
+floatingpoint = 
+	{plain} fixedpoint |
+	{eng} fixedpoint eng intnum |
+	{eng2} unoeng intnum;
+
+fixedpoint = 
+	{int} intnum |
+	{dec} dot absnum |
+	{both} intnum dot absnum;
+
+intnum = 
+	{posneg} minus+ number;
+
+absnum = 
+	{num} number;
+
+aname = 
+	{id} identifier;
+
+sname = 
+	{id} identifier;
+
+contname = 
+	{id} identifier;
+
+cname = 
+	{id} identifier;
