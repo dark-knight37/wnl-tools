@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WNL:WaterNetwork xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:WNL="WNL">
+  <containsNode xsi:type="WNL:Conjuction" name="N1" monitoringService="SM1"/>
+  <containsNode xsi:type="WNL:Conjuction" name="N2"/>
+  <containsNode xsi:type="WNL:Conjuction" name="N3"/>
+  <containsNode xsi:type="WNL:Conjuction" name="N4"/>
+  <containsNode xsi:type="WNL:Conjuction" name="N5" monitoringService="SM2"/>
+  <containsNode xsi:type="WNL:Conjuction" name="N6"/>
+  <containsNode xsi:type="WNL:Tank" name="Tank"/>
+  <containsNode xsi:type="WNL:Reservoir" name="Reservoir"/>
+  <containsLink flowrate="0.9" source="//@containsNode.0" destination="//@containsNode.1" id="Pipe1"/>
+  <containsLink flowrate="1.1" source="//@containsNode.0" destination="//@containsNode.4" id="Pipe9"/>
+  <containsLink flowrate="1.1" source="//@containsNode.1" destination="//@containsNode.3" id="Pipe8"/>
+  <containsLink flowrate="1.0" source="//@containsNode.2" destination="//@containsNode.3" id="Pipe11"/>
+  <containsLink flowrate="1.2" source="//@containsNode.3" destination="//@containsNode.4" id="Pipe7"/>
+  <containsLink flowrate="0.5" source="//@containsNode.2" destination="//@containsNode.5" id="Pipe3"/>
+  <containsLink flowrate="1.2" source="//@containsNode.1" destination="//@containsNode.2" id="Pipe2"/>
+  <containsLink flowrate="3.0" source="//@containsNode.5" destination="//@containsNode.6" id="Pipe5"/>
+  <containsLink flowrate="0.4" source="//@containsNode.6" destination="//@containsNode.4" id="Pipe6"/>
+  <containsLink flowrate="1.0" source="//@containsNode.7" destination="//@containsNode.0" id="Pipe10"/>
+  <containsAttack successProb="0.6" concentration="0.9" attacks="//@containsNode.0" name="Contaminant1"/>
+  <containsAttack successProb="0.7" concentration="1.2" attacks="//@containsNode.1" name="Contaminant2"/>
+</WNL:WaterNetwork>
