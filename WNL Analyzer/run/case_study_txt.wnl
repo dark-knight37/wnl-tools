@@ -1,0 +1,104 @@
+service SM1 implementedBy Monitor1 detects Trialomethans;
+service SM2 implementedBy Monitor2 detects Trialomethans;
+service SM3 implementedBy Monitor3 detects Trialomethans;
+service HotSpot implementedBy Monitor2 nodetects;
+service Communication implementedBy Gateway nodetects;
+service PowerSupply implementedBy Charger nodetects;
+
+component Monitor1 {
+	description "Sensing Component";
+	uses HotSpot, Communication, PowerSupply;
+	component cpu1 {
+		description "CPU";
+		nouses;
+		failure 1E-6;
+		replication 1;
+		redundancy 1;
+	}
+	component memory1 {
+		description "RAM";
+		nouses;
+		failure 1E-8;
+		replication 1;
+		redundancy 1;
+	}
+	replication 1;
+	redundancy 1;
+}
+
+component Monitor2 {
+	description "Sensing Component";
+	uses Communication, PowerSupply;
+	component cpu2 {
+		description "CPU";
+		nouses;
+		failure 1E-6;
+		replication 1;
+		redundancy 1;
+	}
+	component memory2 {
+		description "RAM";
+		nouses;
+		failure 1E-8;
+		replication 1;
+		redundancy 1;
+	}
+	replication 1;
+	redundancy 1;
+}
+
+component Monitor3 {
+	description "Self powered Sensing Component";
+	uses Communication;
+	component cpu3 {
+		description "CPU";
+		nouses;
+		failure 1E-6;
+		replication 1;
+		redundancy 1;
+	}
+	component memory3 {
+		description "RAM";
+		nouses;
+		failure 1E-8;
+		replication 1;
+		redundancy 1;
+	}
+	component power3 {
+		description "Power Supply";
+		nouses;
+		failure 1E-5;
+		replication 1;
+		redundancy 1;
+	}
+	replication 1;
+	redundancy 1;
+}
+
+component Gateway {
+	description "Communication component";
+	uses PowerSupply;
+	failure 1E-7;
+	replication 1;
+	redundancy 1;
+}
+
+component Charger {
+	description "Power supplier";
+	nouses;
+	failure 1E-7;
+	replication 1;
+	redundancy 1;
+}
+
+attack dos_comm {
+	description "Denial of Service";
+	success .05;
+	affecting Gateway;
+}
+
+attack dos_pow {
+	description "Depletion of Battery";
+	success .1;
+	affecting Charger;
+}

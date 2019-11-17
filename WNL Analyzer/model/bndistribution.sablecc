@@ -1,0 +1,74 @@
+Package bn.analysis.distribution;
+
+Helpers
+eol = 11 | 9 | 10 | 13 | 10 13;
+sp = ' ';
+tab = 11;
+digit = ['0'..'9'];
+underscore = '_';
+char = [['a'..'z']+['A'..'Z']];
+cr = 13;
+lf = 10;
+all = [0 .. 0xFFFF];
+cr_lf = [cr + lf]; 
+not_cr_lf = [all - [cr + lf]];
+exp = 'E';
+minus = '-';
+
+Tokens
+dot = '.';
+table = 'table';
+probability_tok = 'probability';
+sslash = '//';
+identifier = char (digit | underscore | char)*;
+number = digit*;
+numexp = digit* exp minus digit*;
+pipe = '|';
+quote = '"';
+l_par = '(';
+r_par = ')';
+l_bra = '{';
+r_bra = '}';
+p = 'p(';
+semi = ';';
+space = (sp | tab)+;
+ncl = not_cr_lf;
+cl = cr_lf;
+noise = (digit | char | '(' | ')')*;
+
+Ignored Tokens
+space, cl;
+
+Productions
+result = 
+	{main} table structures;
+
+structures =
+	{simple} structure |
+	{list} structure structures;
+
+structure =
+	{payload} float sslash legend;
+
+float = 
+	{def} mantisse dot decimal semi? |
+	{sci} mantisse dot exponent semi?;
+
+mantisse = 
+	{def} number;
+
+exponent = 
+	{def} numexp;
+
+decimal = 
+	{def} number;
+
+legend = 
+	{structure} p variable pipe evidence r_par semi?;
+
+evidence =
+	{id} identifier;
+
+variable =
+	{id} identifier;
+	
