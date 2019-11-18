@@ -6,7 +6,7 @@
   <containsNode xsi:type="WNL:Conjuction" name="3"/>
   <containsNode xsi:type="WNL:Conjuction" name="4"/>
   <containsNode xsi:type="WNL:Conjuction" name="5"/>
-  <containsNode xsi:type="WNL:Conjuction" name="6" monitoringService="SM3"/>
+  <containsNode xsi:type="WNL:Conjuction" name="6"/>
   <containsNode xsi:type="WNL:Conjuction" name="7"/>
   <containsNode xsi:type="WNL:Reservoir" name="24"/>
   <containsNode xsi:type="WNL:Conjuction" name="10"/>
@@ -15,13 +15,13 @@
   <containsNode xsi:type="WNL:Conjuction" name="13"/>
   <containsNode xsi:type="WNL:Conjuction" name="12"/>
   <containsNode xsi:type="WNL:Conjuction" name="11"/>
-  <containsNode xsi:type="WNL:Tank" name="Asset_2" monitoringService="SM2"/>
+  <containsNode xsi:type="WNL:Tank" name="Asset_2"/>
   <containsNode xsi:type="WNL:Reservoir" name="25"/>
   <containsNode xsi:type="WNL:Conjuction" name="14"/>
   <containsNode xsi:type="WNL:Conjuction" name="15"/>
   <containsNode xsi:type="WNL:Conjuction" name="16"/>
   <containsNode xsi:type="WNL:Conjuction" name="18"/>
-  <containsNode xsi:type="WNL:Conjuction" name="17" monitoringService="SM1"/>
+  <containsNode xsi:type="WNL:Conjuction" name="17"/>
   <containsNode xsi:type="WNL:Conjuction" name="20"/>
   <containsNode xsi:type="WNL:Conjuction" name="19"/>
   <containsNode xsi:type="WNL:Tank" name="Asset_1"/>
@@ -62,6 +62,6 @@
   <containsLink flowrate="3.52" source="//@containsNode.24" destination="//@containsNode.22" id="Pipe24"/>
   <containsLink flowrate="14.45" source="//@containsNode.10" destination="//@containsNode.24" id="Pipe17"/>
   <containsLink flowrate="2.93" source="//@containsNode.5" destination="//@containsNode.24" id="Pipe12"/>
-  <containsAttack successProb="0.2" concentration="0.1" attacks="//@containsNode.9" name="Trialomethans_1" description=""/>
-  <containsAttack successProb="0.2" concentration="0.2" attacks="//@containsNode.23" name="Trialomethans_2"/>
+  <containsAttack concentration="0.1" attacks="//@containsNode.9" name="T1" description=""/>
+  <containsAttack concentration="0.2" attacks="//@containsNode.23" name="T2"/>
 </WNL:WaterNetwork>
