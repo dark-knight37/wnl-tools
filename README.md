@@ -29,7 +29,7 @@ This software is build upon the following software libraries. Without them, buil
 * JavaBayes ver 0.346 - https://www.cs.cmu.edu/~javabayes/Home/ (modified without GUI)
 
 ## Bibliography
-Please refer to the following paper to de
+Please refer to the following papers:
 1. Gentile, U., Marrone, S., De Paola, F., Nardone, R., Mazzocca, N., Giugni, M.; Model-Based Water Quality Assurance in Ground and Surface Provisioning Systems; Proceedings - 2015 10th International Conference on P2P, Parallel, Grid, Cloud and Internet Computing, 3PGCIC 2015; 2016; https://doi.org/10.1109/3PGCIC.2015.97
 1. Gentile, U., Marrone, S., Nardone, R., Bellini, E.; Computer-aided security assessment of water networks monitoring platforms; (2020) International Journal of Critical Infrastructure Protection, 31; https://doi.org/10.1016/j.ijcip.2020.100390
 1. Aquasystem: italian funded project for innovative techniques and practices for improving quality and managent of surface water supply networks (http://www.aquasystemproject.it/)
